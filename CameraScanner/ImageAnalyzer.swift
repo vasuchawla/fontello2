@@ -80,6 +80,8 @@ final class ImageAnalyzer {
                 let cardNumber2 = text
                     .replacingOccurrences(of: " ", with: "")
                     .replacingOccurrences(of: "-", with: "")
+                    .replacingOccurrences(of: ".", with: "")
+                    .replacingOccurrences(of: ",", with: "")
                   creditCard.number = cardNumber2
                       strongSelf.selectedCard.number = cardNumber2
                   // Handle the credit card number appropriately
@@ -96,9 +98,20 @@ final class ImageAnalyzer {
       
       
       func isCreditCardNumber(_ string: String) -> Bool {
-          // Remove any non-digit characters
-          let digitsOnly = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-          
+        
+        let allowedCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: " .,"))
+
+        // Check if the input contains any invalid characters
+         if string.rangeOfCharacter(from: allowedCharacters.inverted) != nil {
+             return false // Contains invalid characters
+         }
+        
+        print(string)
+        // Remove spaces, dots, and commas to extract only digits
+        let digitsOnly = string.replacingOccurrences(of: " ", with: "")
+                                .replacingOccurrences(of: ".", with: "")
+                                .replacingOccurrences(of: ",", with: "")
+        
           // Check if the string has a valid length for a credit card (usually 13-19 digits)
           if digitsOnly.count < 13 || digitsOnly.count > 19 {
               return false

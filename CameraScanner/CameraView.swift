@@ -1,9 +1,3 @@
-//
-//  CameraView.swift
-//  CreditCardScannerPackageDescription
-//
-//  Created by josh on 2020/07/23.
-//
 #if canImport(UIKit)
 #if canImport(AVFoundation)
 
@@ -140,7 +134,11 @@ final class CameraView: UIView {
         }
     }
 
-    func setupRegionOfInterest() {
+    // MARK: - Mask and Animation
+//    private var maskLayer: CAShapeLayer?
+//    private var strokeLayer: CAShapeLayer?
+
+  func setupRegionOfInterest() {
         guard regionOfInterest == nil else { return }
         /// Mask layer that covering area around camera view
         let backLayer = CALayer()
@@ -189,6 +187,13 @@ final class CameraView: UIView {
                                   width: interestWidth,
                                   height: interestHeight)
     }
+  
+  
+  
+  
+
+  
+  
 }
 
 @available(iOS 13, *)
@@ -220,10 +225,11 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         delegate?.didCapture(image: croppedImage)
     }
 }
+
 #endif
 #endif
 
+// MARK: - CreditCard Extension
 extension CreditCard {
-    // The aspect ratio of credit-card is Golden-ratio
     static let heightRatioAgainstWidth: CGFloat = 0.6180469716
 }

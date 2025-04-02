@@ -70,6 +70,7 @@ open class CreditCardScannerViewController: UIViewController {
     public required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
+  
 
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -106,10 +107,11 @@ private extension CreditCardScannerViewController {
         cameraView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cameraView)
         NSLayoutConstraint.activate([
+//          cameraView.widthAnchor.constraint(equalTo: view.widthAnchor),
             cameraView.topAnchor.constraint(equalTo: view.topAnchor),
             cameraView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: CreditCard.heightRatioAgainstWidth, constant: 100),
+          cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: CreditCard.heightRatioAgainstWidth, constant:150),
         ])
 
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
